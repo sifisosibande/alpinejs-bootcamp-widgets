@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <script src="greet.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.0.6/dist/alpine.js" defer></script>
+    <script src="totalPhoneBill.js" defer></script>
+    <script src="transportFee.js" defer></script>
+    <script src="longestWord.js" defer></script>
+
+</head>
+<body>
+    <div class="widget-container" x-data="greetingWidget()">
+        <h2>Greeting Widget</h2>
+        <input type="text" x-model="name" placeholder="Enter your name">
+        <button x-on:click="greet()">Greet</button>
+        <p x-text="greeting"></p>
+    </div>
+    
+    <div class="widget-container" x-data="transportWidget()">
+        <h2>Transport Fee Widget</h2>
+        <label>
+            <input type="radio" x-model="shift" value="morning">
+            Morning
+        </label>
+        <label>
+            <input type="radio" x-model="shift" value="afternoon">
+            Afternoon
+        </label>
+        <label>
+            <input type="radio" x-model="shift" value="evening">
+            Evening
+        </label>
+        <p x-show="shift !== 'evening'">Transport Fee: <span x-text="transport"></span></p>
+        <p x-show="shift === 'evening'">Transport Fee: Free</p>
+    </div>
+
+    <div class="widget-container" x-data="phoneBillWidget()">
+        <h2>Total Phone Bill Widget</h2>
+        <input type="text" x-model="callAndSms" placeholder="Enter call and sms values">
+        <button x-on:click="calculateTotal()">Calculate</button>
+        <p x-text="totalBill"></p>
+    </div>
+    <div class="widget-container" x-data="{ inputText: '', longest: '', shortest: '', totalLength: '' }">
+        <h2>Word Counter Widget</h2>
+        <textarea rows="4" cols="50" x-model="inputText" placeholder="Enter text"></textarea>
+        <button x-on:click="longest = longestWord(inputText)">Find Longest Word</button>
+        <button x-on:click="shortest = shortestWord(inputText)">Find Shortest Word</button>
+        <button x-on:click="totalLength = wordLengths(inputText)">Calculate Total Length</button>
+
+        <div>
+            <p>Longest Word: <span x-text="longest"></span></p>
+            <p>Shortest Word: <span x-text="shortest"></span></p>
+            <p>Total Length: <span x-text="totalLength"></span></p>
+        </div>
+    </div>
+    
+</body>
+      
+</body>
+</html>
